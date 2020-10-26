@@ -17,6 +17,14 @@ class EmployeeController extends Controller
     }
 
     public function update(Request $request, $id) {
+
+        $this -> validate($request, [
+           'name' => 'required',
+           'surname' => 'required',
+           'position' => 'required',
+           'phone' => 'required'
+        ]);
+
         $employee = Employee::findOrFail($id);
 
         $employee -> name = $request -> name;
